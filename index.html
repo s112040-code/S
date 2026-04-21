@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>點點飲料系統 | GoGo Beverages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <span class="logo-icon">🍹</span>
+        <span class="logo-text">GoGo Beverages</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn active" id="nav-frontend" onclick="switchView('frontend')">前台點餐</button>
+        <button class="nav-btn" id="nav-backend" onclick="switchView('backend')">後台管理</button>
+      </div>
+    </nav>
+
+    <main class="main-container">
+      
+      <!-- FRONTEND VIEW (Customer) -->
+      <section id="view-frontend" class="view-section active">
+        <div class="frontend-layout">
+          <div class="menu-container">
+            <header class="view-header">
+              <h1>探索美味飲品 🌟</h1>
+              <p>選取您喜愛的飲料，我們馬上為您準備。</p>
+            </header>
+            
+            <div class="category-filters" id="category-filters">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="menu-grid" id="menu-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Cart Sidebar -->
+          <div class="cart-sidebar">
+            <div class="cart-header">
+              <h2>購物車 🛒</h2>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+              <!-- Rendered via JS -->
+              <div class="empty-cart">您的購物車是空的喵客</div>
+            </div>
+
+            <div class="cart-summary">
+              <div class="summary-row">
+                <span>小計</span>
+                <span id="cart-subtotal">$0</span>
+              </div>
+              <div class="summary-row total">
+                <span>總計</span>
+                <span id="cart-total">$0</span>
+              </div>
+              <button class="checkout-btn" onclick="submitOrder()" id="checkout-btn" disabled>送出訂單</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BACKEND VIEW (Admin Dashboard) -->
+      <section id="view-backend" class="view-section">
+        <div class="backend-layout">
+          <header class="view-header">
+            <h1>營運儀表板 📈</h1>
+            <p>即時監控今日營業額與訂單狀態。</p>
+          </header>
+
+          <div class="dashboard-stats">
+            <div class="stat-card">
+              <div class="stat-icon revenue-icon">💰</div>
+              <div class="stat-info">
+                <h3>總營業額</h3>
+                <p class="stat-value" id="stat-revenue">$0</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orders-icon">🧾</div>
+              <div class="stat-info">
+                <h3>今日訂單數</h3>
+                <p class="stat-value" id="stat-orders-count">0</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon pending-icon">⏳</div>
+              <div class="stat-info">
+                <h3>待處理項目</h3>
+                <p class="stat-value" id="stat-pending-items">0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="orders-management">
+            <div class="section-title-row">
+              <h2>最新訂單列表</h2>
+              <button class="refresh-btn" onclick="renderBackendOrders()">重新整理</button>
+            </div>
+            <div class="table-container">
+              <table class="orders-table">
+                <thead>
+                  <tr>
+                    <th>訂單編號</th>
+                    <th>時間</th>
+                    <th>內容</th>
+                    <th>總價</th>
+                    <th>狀態</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody id="orders-tbody">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">訊息</div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
